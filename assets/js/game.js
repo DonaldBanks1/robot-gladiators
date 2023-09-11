@@ -1,19 +1,60 @@
 var playerName = window.prompt("What is your robot's name?");
-//Note the lack of quotation marks around playername 
+var playerHealth = 100;
+var playerAttack = 10;
 
-console.log(playerName);
-//tells console to log the players name
+//you can also log multiple values at once like this 
+console.log(playerName,playerAttack,playerHealth);
 
-console.log("this logs a string, good for leaving yourself a message");
-//this will do math and log 20
-console.log(10+10);
-//what is this?
-console.log("Our robot's name is " + playerName);
-//We wanted to take the name of our robot and place it into a sentence that would read, "Our robot's name is ." To do this, we needed to combine a string with a variable. This is called string concatenation.
+var enemyName = "Jessie";
+var enemyAttack = 12;
+var enemyHealth = 50;
 
-function fight() {
-   window.alert("The fight has begun!");
+var fight = function() {
+   //Alerts players that they are starting the round
+   window.alert("Welcome to Robot Gladiators!");
+
+
+   //Subtract the value of 'playerAttack' from the value of 'enemyHealth' amd use that result to update the value in the 'enemyHealth' variable
+enemyHealth = enemyHealth - playerAttack;
+
+
+   //Log a resulting message to the console so we know that it worked.
+
+   console.log(
+      playerName + " attacked " + enemyName + ". " +enemyName + " now has " + enemyHealth + " health remaining. "
+
+   );
+
+   //Subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that result to update the value in the 'playerHealth' variable.
+playerHealth = enemyAttack - playerAttack;
+
+
+   //Log a resulting message to the console so we know that it worked.
+
+   console.log(
+      enemyName + " attacked " + playerName + ". " +playerName + " now has " + enemyHealth + " health remaining. "
+   );
+
+
+   //check enemy's health
+   if(enemyHealth <= 0) {
+      window.alert(enemyName + " has died! ");
+   }
+
+else {
+   window.alert(enemyName + " still has " + enemyHealth + " health left. ");
+}
+
+//check player's health
+if(playerHealth <= 0) {
+   window.alert(playerName + " has died! ");
+}
+
+else {
+   window.alert(playerName + " still has " + playerHealth + " health left. ");
+   
+}
+
 };
-fight();
-//fight();
 
+fight();
