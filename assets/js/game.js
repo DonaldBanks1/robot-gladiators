@@ -9,8 +9,33 @@ var playerInfo = {
     name: window.prompt("What is your players name?"),
     health: 100,
     attack: 10,
-    money: 10
-};
+    money: 10,
+
+    reset: function() {
+      this.health = 100;
+      this.money = 10;
+      this.attack = 10;
+    },
+    refillHealth: function() {
+      if(this.money >= 7) {
+        window.alert("Refilling player's health by 20 for 7 dollars.");
+      this.health += 20;
+      this.money += 7;
+    }
+    else {
+      window.alert("You don't have enough money!");
+    }
+  },
+    upgradeAttack: function() {
+      if(this.money >= 7) {
+        window.alert("Upgrading player's attack nu 6 for 7 dollars.");
+      this.attack += 6;
+      this.money -= 7;
+    }
+    else {
+      window.alert("You don't have enough money!");
+    }
+}
 
 var enemyInfo = [
   {
@@ -26,7 +51,6 @@ var enemyInfo = [
     attack: randomNumber(10, 14) 
   }
 ];
-
 
 // fight function (now with parameter for enemy's name) 
 var fight = function(enemy) {
@@ -53,7 +77,7 @@ var fight = function(enemy) {
     //generate random damage value based on player's attack power
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
-    enemyInfo.health = Math.max(0, enemyInfo.health - damage);
+    enemy.health = Math.max(0, enemyInfo.health - damage);
     console.log(
       playerInfo.name + ' attacked ' + enemyInfo.name + '. ' + enemyInfo.name + ' now has ' + enemyInfo.health + ' health remaining.'
     );
@@ -92,10 +116,9 @@ var fight = function(enemy) {
 
 // function to start a new game
 var startGame = function() {
-  // reset player stats
-  playerInfo.health = 100;
-  playerInfo.attack = 10;
-  playerInfo.attack = 10;
+ //reset player stats 
+ playerInfo.reset();
+
 
   // fight each enemy robot by looping over them and fighting them one at a time
   for (var i = 0; i < enemyInfo.length; i++) {
@@ -161,12 +184,18 @@ var shop = function() {
   // ask player what they'd like to do
   var shopOptionPrompt = window.prompt(
     'Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one "REFILL", "UPGRADE", or "LEAVE" to make a choice.'
-  );
+  ).toLowerCase();
 
   // use switch case to carry out action
   switch (shopOptionPrompt) {
     case 'REFILL':
     case 'refill':
+      playerInfo.refillHealth();
+      break;
+      case "UPGRADE"
+      case "upgrade
+    playerInfo.upgradeAttack();
+    break;
       if (playerInfo.money >= 7) {
         window.alert("Refilling player's health by 20 for 7 dollars.");
 
